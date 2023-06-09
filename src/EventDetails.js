@@ -11,18 +11,16 @@ const EventDetails = () => {
 
 
     return (  
-
-
-        
-
-
         <div className="event-details-preview">
 
 
             
-            <h2>FUck ofrf</h2>
-            
-            <h2>{base[index].year}</h2>
+            <h2>{base[index].title}</h2>
+
+            <img src={base[index].photo} />
+
+            <p>{base[index].description}</p>
+
         </div>
     );
 }

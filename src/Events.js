@@ -5,16 +5,15 @@ import { Link } from 'react-router-dom';
 
 const Events = () => {
 
-    const [events, setEvents] = useState(base
-    )
+    const [events, setEvents] = useState(base)
     
     return (    
 
         <div className="events">
 
-            {events.map((event) => (
 
-                
+            {events.map((event) => (
+      
                 <Link to={`/${event.id}`}>
                 
                 <div className="event-preview" key={event.id}>
