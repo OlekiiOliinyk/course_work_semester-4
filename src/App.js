@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+
+
+import './styles/App.css';
+import NabBar from './NavBar';
+import Events from './Events';
+import QuizTopics from './QuizTopics';
+import EventDetails from './EventDetails';
+
+
 
 function App() {
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+
+    <Router>
+      <div className="App">
+
+
+        <NabBar />
+        <div className="content">
+
+          <Routes>
+
+
+
+            <Route path='/' element={<Events />}> </Route>
+
+            <Route path='/:id' element={<EventDetails />}> </Route>
+
+            <Route path='/quizTopics' element={<QuizTopics />}> </Route>
+            
+            
+          </Routes>
+
+        </div>
+
+      </div>
+    </Router>
   );
 }
 
