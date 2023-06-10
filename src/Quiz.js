@@ -2,15 +2,18 @@ import './styles/Quiz.css'
 import React, {useState} from 'react';
 import { questionTopics } from './ProtoDB';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Quiz = () => {
 
     const {id} = useParams();
 
-
     const index = parseInt(id, 10) - 1;
 
     const questions = questionTopics[index].questions;
+
+
+
 
     const [showFinalResults, setFinalResults] = useState(false);
 
@@ -53,7 +56,9 @@ const Quiz = () => {
 
                     <h2>{score} out of {questions.length} correct - ({(score/questions.length )* 100} %)</h2>
 
-                    <button onClick={()=> restartGame()}>Restart game</button>
+
+                    <Link to='/quizTopics'><button>Return to quiz</button></Link>
+                    
             
                 </div>
 

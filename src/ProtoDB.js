@@ -58,10 +58,10 @@ export const questionTopics = [
     {
       text: "Ahahaha?",
       options: [
-        { id: 0, text: "New York City", isCorrect: false },
-        { id: 1, text: "Boston", isCorrect: false },
-        { id: 2, text: "Santa Fe", isCorrect: false },
-        { id: 3, text: "Washington DC", isCorrect: true },
+        { id: 0, text: "rserser City", isCorrect: false },
+        { id: 1, text: "Bserseron", isCorrect: false },
+        { id: 2, text: "Sasra Fe", isCorrect: false },
+        { id: 3, text: "Wasersrerrseington DC", isCorrect: true },
       ],
     },
     {
@@ -101,9 +101,6 @@ export const questionTopics = [
       ],
     }
   ]},
-
-
-
 ]
 
 
