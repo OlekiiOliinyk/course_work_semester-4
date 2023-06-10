@@ -1,0 +1,14 @@
+.quizzes-preview {
+    text-align: left;
+    padding: 10px 16px;
+    margin: 20px 0;
+    border-bottom: 1px solid #fafafa;
+}
+.quizzes-preview:hover {
+    box-shadow: 3px 6px 15px rgba(0,0,0,0.3);
+}
+.quizzes-preview h2 {
+    font-size: 20px;
+    color: #f1356d;
+    margin-bottom: 8px;
+}

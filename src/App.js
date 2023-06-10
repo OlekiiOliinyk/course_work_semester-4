@@ -7,6 +7,7 @@ import NabBar from './NavBar';
 import Events from './Events';
 import QuizTopics from './QuizTopics';
 import EventDetails from './EventDetails';
+import Quiz from './Quiz';
 
 
 
@@ -27,13 +28,13 @@ function App() {
           <Routes>
 
 
-
             <Route path='/' element={<Events />}> </Route>
 
-            <Route path='/:id' element={<EventDetails />}> </Route>
+            <Route path='/event/:id' element={<EventDetails />}> </Route>
 
             <Route path='/quizTopics' element={<QuizTopics />}> </Route>
-            
+
+            <Route path='/quiz/:id' element={<Quiz />}> </Route>
             
           </Routes>
 

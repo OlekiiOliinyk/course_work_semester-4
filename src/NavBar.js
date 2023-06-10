@@ -9,7 +9,7 @@ const NabBar = () => {
 
         <div className="links">
 
-            <Link to="/events">Learn</Link>
+            <Link to="/">Learn</Link>
             <Link to="/quizTopics">Tests</Link> 
  
         </div>
