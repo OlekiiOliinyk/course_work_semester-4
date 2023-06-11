@@ -11,9 +11,10 @@ const Events = () => {
 
   const [query, setQuery] = useState("");
   const filteredItems = getFilteredItems(query, events);
-
-
-
+  
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   const fetchEvents = async () => {
     try {
@@ -25,9 +26,7 @@ const Events = () => {
     }
   };
 
-  useEffect(() => {
-    fetchEvents();
-  }, []);
+
 
   const handleFilterChange = (e) => {
     setQuery(e.target.value);

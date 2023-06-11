@@ -1,7 +1,7 @@
 import './styles/Quiz.css'
-import React, {useState} from 'react';
-import { questionTopics } from './ProtoDB';
+
 import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Quiz = () => {
@@ -10,16 +10,35 @@ const Quiz = () => {
 
     const index = parseInt(id, 10) - 1;
 
-    const questions = questionTopics[index].questions;
-
-
-
 
     const [showFinalResults, setFinalResults] = useState(false);
 
     const [score, setScore] = useState(0);
 
     const [currentQuestion, setCurrentQuestion] = useState(0);
+
+
+
+
+    const [questions, setQuestions] = useState([]);
+  
+    useEffect(() => {
+      fetchQuestions();
+    }, [id]);
+  
+    const fetchQuestions = async () => {
+      try {
+        const response = await fetch(`http://localhost:2000/getQuizDetails/${id}`);
+        const data = await response.json();
+        setQuestions(data.questions);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    if (questions.length === 0) {
+      return <div>Loading...</div>;
+    }
 
 
     const optionClicked = (isCorrect) => {

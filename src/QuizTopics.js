@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom';
-import { questionTopics } from './ProtoDB';
+
 import {useState, useEffect} from 'react';
 import "./styles/QuizTopics.css"
 import Filter from './Filter';
-import {getFilteredItems} from './Filter';
+import { getFilteredItems, handleFilterChange} from './Filter';
 
 const QuizTopics = () => {
 
     const [quizzesTopics, setEvents] = useState([]);
 
     const [query, setQuery] = useState("");
-
     const filteredItems = getFilteredItems(query, quizzesTopics);
 
 
@@ -22,7 +21,6 @@ const QuizTopics = () => {
         } catch (error) {
           console.log(error);
         }
-
     };
       
     useEffect(() => {

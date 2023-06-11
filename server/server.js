@@ -20,8 +20,6 @@ mongoose.connect(mongoURL, {
 
 
 
-
-
 const Event = require("./eventSchema");
 
 app.get('/getEventDetails', async (req, res) => {
@@ -36,7 +34,22 @@ app.get('/getEventDetails', async (req, res) => {
 
 
 
+app.get('/getEventDetails/:id', async (req, res) => {
+  const eventId = req.params.id;
 
+  try {
+    const event = await Event.findOne({ id: eventId });
+    
+    if (!event) {
+      return res.status(404).json({ error: 'Event not found' });
+    }
+    
+    res.json(event);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 
 const Quiz = require('./quizSchema');
@@ -51,6 +64,25 @@ app.get('/getQuizDetails', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
+app.get('/getQuizDetails/:id', async (req, res) => {
+  const eventId = req.params.id;
+
+  try {
+    const event = await Quiz.findOne({ id: eventId });
+    
+    if (!event) {
+      return res.status(404).json({ error: 'Event not found' });
+    }
+    
+    res.json(event);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 
 const port = 2000;
