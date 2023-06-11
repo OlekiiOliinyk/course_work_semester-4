@@ -10,12 +10,14 @@ const Events = () => {
 
     const [events, setEvents] = useState(base);
     const [query, setQuery] = useState("");
-    const filteredItems = getFilteredItems(query, events);
+    const sortedEvents = events.sort((a, b) => a.year - b.year);
+    const filteredItems = getFilteredItems(query, sortedEvents);
 
     const handleFilterChange = (e) => {
         setQuery(e.target.value);
     }
 
+    
 
     return (    
 
