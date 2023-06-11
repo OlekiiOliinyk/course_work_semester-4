@@ -24,6 +24,7 @@ const EventDetails = () => {
       return <div>Loading...</div>;
     }
 
+      
 
     return (  
         <div className="event-details-preview">

@@ -20,7 +20,8 @@ const Events = () => {
     try {
       const response = await fetch('http://localhost:2000/getEventDetails');
       const data = await response.json();
-      setEvents(data);
+      const sortedData = data.sort((a, b) => a.year - b.year);
+      setEvents(sortedData);
     } catch (error) {
       console.log(error);
     }

@@ -17,7 +17,8 @@ const QuizTopics = () => {
         try {
           const response = await fetch('http://localhost:2000/getQuizDetails');
           const data = await response.json();
-          setEvents(data);
+          const sortedData = data.sort((a, b) => a.period - b.period);
+          setEvents(sortedData);
         } catch (error) {
           console.log(error);
         }
@@ -47,7 +48,7 @@ const QuizTopics = () => {
                     <div className="quizzes-preview" key={quiz.id}>
 
                         <h2>{quiz.title}</h2>
-                        
+                        <p>{quiz.period}'s</p>
                     </div>
 
                 
