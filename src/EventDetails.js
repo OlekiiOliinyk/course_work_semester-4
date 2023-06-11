@@ -12,7 +12,7 @@ const EventDetails = () => {
 
     return (  
         <div className="event-details-preview">
-    
+            
             <h2>{base[index].title}</h2>
 
             <img src={base[index].photo} />
