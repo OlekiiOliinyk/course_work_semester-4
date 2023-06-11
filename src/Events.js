@@ -1,40 +1,55 @@
 import {useState, useEffect} from 'react';
-import { base } from './ProtoDB';
+import Filter from './Filter';
 import './styles/Events.css';
 import { Link } from 'react-router-dom';
-import Filter from './Filter'; 
-import { getFilteredItems } from './Filter';
+import { getFilteredItems} from './Filter';
 
 const Events = () => {
-    const [events, setEvents] = useState(base);
-    const [query, setQuery] = useState("");
-    const [sortedEvents, setSortedEvents] = useState([]);
-  
-    useEffect(() => {
-      const sorted = [...events].sort((a, b) => a.year - b.year);
-      setSortedEvents(sorted);
-    }, [events]);
-  
-    const filteredItems = getFilteredItems(query, sortedEvents);
-  
-    const handleFilterChange = (e) => {
-      setQuery(e.target.value);
+
+
+  const [events, setEvents] = useState([]);
+
+  const [query, setQuery] = useState("");
+  const filteredItems = getFilteredItems(query, events);
+
+
+
+
+  const fetchEvents = async () => {
+    try {
+      const response = await fetch('http://localhost:2000/getEventDetails');
+      const data = await response.json();
+      setEvents(data);
+    } catch (error) {
+      console.log(error);
     }
-  
-    return (
-      <div className="events">
-        <Filter value={query} onChange={handleFilterChange} />
-  
-        {filteredItems.map((event) => (
-          <Link to={`/event/${event.id}`} key={event.id}>
-            <div className="event-preview">
-              <h2>{event.title}</h2>
-              <h4>{event.year}</h4>
-            </div>
-          </Link>
-        ))}
-      </div>
-    );
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  const handleFilterChange = (e) => {
+    setQuery(e.target.value);
   }
+
+  return (
+
+
+    <div className="events">
+
+      <Filter value={query} onChange={handleFilterChange} />  
+  
+      {filteredItems.map((event) => (
+        <Link to={`/event/${event.id}`} key={event.id}>
+          <div className="event-preview">
+            <h2>{event.title}</h2>
+            <h4>{event.year}</h4>
+          </div>
+        </Link>
+      ))}
+    </div>
+  );
+}
   
 export default Events;

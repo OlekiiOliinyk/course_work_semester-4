@@ -1,12 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const cors = require('cors');  
+
 const app = express();
 
-// MongoDB connection URL
-const mongoURL = 'mongodb://localhost:27017/TimeSaga'; 
+app.use(cors());  // use it as middleware
 
-// Establish the MongoDB connection
+const mongoURL = 'mongodb://localhost:27017/TimeSaga';
+
 mongoose.connect(mongoURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -16,27 +18,42 @@ mongoose.connect(mongoURL, {
   console.error('Error connecting to MongoDB', error);
 });
 
-const eventSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  date: Date
-});
 
-const Event = mongoose.model('Event', eventSchema);
+
+
+
+const Event = require("./eventSchema");
 
 app.get('/getEventDetails', async (req, res) => {
-    try {
-      const events = await Event.find({});
-      res.send({
-        status: 'ok',
-        data: events
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  });
+  try {
+    const events = await Event.find({});
+    res.json(events);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
-const port = 5000;
+
+
+
+
+
+const Quiz = require('./quizSchema');
+
+
+app.get('/getQuizDetails', async (req, res) => {
+  try {
+    const quizzes = await Quiz.find({});
+    res.json(quizzes);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+const port = 2000;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
