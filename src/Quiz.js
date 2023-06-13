@@ -65,7 +65,8 @@ const Quiz = () => {
         <div className="quiz">
 
 
-            <h2>Поточний бал: {score}</h2>
+            
+            {!showFinalResults && <h2>Поточний бал: {score}</h2>}
             
 
             {showFinalResults ?
@@ -73,8 +74,9 @@ const Quiz = () => {
                 <div className="final-results">
                     <h1>Результат</h1>
 
-                    <h2>{score} балів з {questions.length} правильні - ({(score/questions.length )* 100} %)</h2>
+                    <h2>{score} {score < 5 ? "бали" : "балів"} з {questions.length} правильні </h2>
 
+                    <h2>{(score/questions.length )* 100} %</h2>
 
                     <Link to='/quizTopics'><button>Повернутися до тестів</button></Link>
                     
