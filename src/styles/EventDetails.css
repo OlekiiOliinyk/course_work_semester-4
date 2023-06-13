@@ -1,0 +1,18 @@
+.event-details-preview {
+    background-color: red;
+    padding: 20px;
+    color: white;
+  }
+  
+  .event-details-preview h2 {
+    color: white;
+  }
+  
+  .event-details-preview img {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .event-details-preview p {
+    color: white;
+  }

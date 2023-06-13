@@ -1,0 +1,53 @@
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.auth-inner {
+    width: 400px;
+    padding: 20px;
+    background: #f7f7f7;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+  
+.auth-inner h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+  
+.auth-inner .mb-3 {
+    margin-bottom: 15px;
+}
+  
+.auth-inner label {
+    display: flex;
+    font-weight: bold;
+    margin-left: 0;
+}
+  
+.auth-inner input[type="text"],
+.auth-inner input[type="email"],
+.auth-inner input[type="password"] {
+
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+  
+.auth-inner .btn-primary {
+    width: 40%;
+    font-size: 20px;
+    padding: 10px 15px;
+    width: 50%;
+}
+  
+.auth-inner .forgot-password {
+    margin-top: 10px;
+    text-align: right;
+}
+.a-help{
+    color: #ff78a0;
+}

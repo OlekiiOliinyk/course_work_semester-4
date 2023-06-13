@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import "./styles/EventDetails.css"
 
 const EventDetails = () => {   
 
@@ -32,6 +33,7 @@ const EventDetails = () => {
             <h2>{event.title}</h2>
 
             <img src={event.photoURL} />
+            <p>{event.photo_description}</p>
 
             <p>{event.description}</p>
 

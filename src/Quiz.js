@@ -65,18 +65,18 @@ const Quiz = () => {
         <div className="quiz">
 
 
-            <h2>Current Score: {score}</h2>
+            <h2>Поточний бал: {score}</h2>
             
 
             {showFinalResults ?
             
                 <div className="final-results">
-                    <h1>Final results</h1>
+                    <h1>Результат</h1>
 
-                    <h2>{score} out of {questions.length} correct - ({(score/questions.length )* 100} %)</h2>
+                    <h2>{score} балів з {questions.length} правильні - ({(score/questions.length )* 100} %)</h2>
 
 
-                    <Link to='/quizTopics'><button>Return to quiz</button></Link>
+                    <Link to='/quizTopics'><button>Повернутися до тестів</button></Link>
                     
             
                 </div>
@@ -84,7 +84,7 @@ const Quiz = () => {
             :
             
                 <div className="question-card">
-                    <h2>Question {currentQuestion + 1} out of {questions.length}</h2>
+                    <h2>Питання №{currentQuestion + 1} з {questions.length}</h2>
 
                     <h3>{questions[currentQuestion].text}</h3>
 

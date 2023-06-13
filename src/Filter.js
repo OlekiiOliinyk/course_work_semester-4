@@ -1,4 +1,7 @@
 import React from 'react';
+import "./styles/Filter.css"
+
+
 
 export const getFilteredItems = (query, obj) => {
 
@@ -16,10 +19,11 @@ const Filter = ({ value, onChange }) => {
 
     return (
         <input 
+            className='input-field'
             type="text" 
             onChange={onChange}
             value={value}
-            placeholder="Search..." 
+            placeholder="Пошук..." 
         />
     );
 }

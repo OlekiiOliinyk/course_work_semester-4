@@ -9,10 +9,6 @@ const bcrypt = require('bcrypt');
 app.use(express.json());
 app.use(cors());
 
-
-
-
-
 const mongoURL = process.env.MONGODB_URL;
 const port = process.env.PORT;
 const JWT_SECRET = process.env.JWT_SECRET;

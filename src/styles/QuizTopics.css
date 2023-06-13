@@ -3,6 +3,8 @@
     padding: 10px 16px;
     margin: 20px 0;
     border-bottom: 1px solid #fafafa;
+    border-radius: 20px;
+    font-weight: bold;
 }
 .quizzes-preview:hover {
     box-shadow: 3px 6px 15px rgba(0,0,0,0.3);

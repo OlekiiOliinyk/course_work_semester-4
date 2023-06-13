@@ -20,7 +20,11 @@ const Events = () => {
     try {
       const response = await fetch('http://localhost:2000/getEventDetails');
       const data = await response.json();
-      const sortedData = data.sort((a, b) => a.year - b.year);
+      const sortedData = data.sort((a, b) => {
+        const startYearA = parseInt(a.year.split('-')[0]);
+        const startYearB = parseInt(b.year.split('-')[0]);
+        return startYearA - startYearB;
+      });
       setEvents(sortedData);
     } catch (error) {
       console.log(error);
@@ -44,7 +48,8 @@ const Events = () => {
         <Link to={`/event/${event.id}`} key={event.id}>
           <div className="event-preview">
             <h2>{event.title}</h2>
-            <h4>{event.year}</h4>
+            
+            <h4>Період: {event.year} роки</h4>
           </div>
         </Link>
       ))}
