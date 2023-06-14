@@ -1,18 +1,26 @@
 .event-details-preview {
-    background-color: red;
+    background-color: white;
     padding: 20px;
-    color: white;
+    color: black;
   }
-  
+  .photo_desc {
+    text-align: center;
+    margin-top: 0;
+  }
+
   .event-details-preview h2 {
-    color: white;
+    color: #f1356d;
   }
+
   
-  .event-details-preview img {
+.event-details-preview img {
     width: 100%;
-    max-width: 400px;
-  }
+    max-width: 600px;
+}
   
-  .event-details-preview p {
-    color: white;
-  }
+.event_info{
+  text-align: left;
+  margin: 50px 10px;
+}
+
+

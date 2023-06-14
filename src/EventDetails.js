@@ -25,7 +25,18 @@ const EventDetails = () => {
       return <div>Loading...</div>;
     }
 
+    function TextComponent(text) {
       
+      const lines = text.split('\n').map((line, index) => (
+        <span key={index}>
+          {line}
+          <br />
+        </span>
+      ));
+    
+      return <div>{lines}</div>;
+    }
+    
 
     return (  
         <div className="event-details-preview">
@@ -33,9 +44,9 @@ const EventDetails = () => {
             <h2>{event.title}</h2>
 
             <img src={event.photoURL} />
-            <p>{event.photo_description}</p>
+            <p className='photo_desc'>{event.photo_description}</p>
 
-            <p>{event.description}</p>
+            <p className='event_info'>{TextComponent(event.description)}</p>
 
         </div>
     );
