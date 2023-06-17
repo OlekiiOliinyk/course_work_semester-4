@@ -158,6 +158,112 @@ app.get('/getQuizDetails/:id', async (req, res) => {
 
 
 
+require("./eventRead");
+
+const EventRead = mongoose.model("readEvents");
+
+app.post("/getAllReadEvents", async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    const user = jwt.verify(token, JWT_SECRET);
+    const userEmail = user.email;
+
+    const readEvents = await EventRead.find({ emailId: userEmail }).select(
+      "eventId"
+    );
+
+    res.json({ events: readEvents });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+app.post("/updateEventRead", async (req, res) => {
+  const { token, id } = req.body;
+
+  try {
+    const user = jwt.verify(token, JWT_SECRET);
+    const useremail = user.email;
+
+    const isRead = await EventRead.findOne({ emailId: useremail, eventId: id });
+
+    if (isRead) {
+      return res.send({ status: "Already Read" });
+    }
+
+    await EventRead.create({
+      emailId: useremail,
+      eventId: id,
+    });
+
+    res.send({ status: "IsUpdated" });
+  } catch (error) {
+    console.log(error);
+    res.send({ status: "Error" });
+  }
+});
+
+
+
+
+
+
+
+
+
+
+require("./quizScoreSchema");
+
+const QuizScore = mongoose.model("quizzesScores");
+
+app.post("/getAllQuizzesScores", async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    const user = jwt.verify(token, JWT_SECRET);
+    const userEmail = user.email;
+
+    const quizzesScores = await QuizScore.find({ emailId: userEmail }).select(
+      "quizId lastScore"
+    );
+
+    res.json({ scores: quizzesScores });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/updateQuizScore", async (req, res) => {
+  const { token, id, lastScore } = req.body;
+
+  try {
+    const user = jwt.verify(token, JWT_SECRET);
+    const useremail = user.email;
+
+    const userScore = await QuizScore.findOne({ emailId: useremail, quizId: id });
+
+    if (userScore) {
+      userScore.lastScore = lastScore;
+      await userScore.save();
+      return res.send({ status: "User Score updated" });
+    }
+    await QuizScore.create({
+      emailId: useremail,
+      quizId: id,
+      lastScore: lastScore,
+    });
+    
+
+    res.send({ status: "User Score Created" });
+  } catch (error) {
+    console.log(error);
+    res.send({ status: "Error" });
+  }
+});
+
+
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);

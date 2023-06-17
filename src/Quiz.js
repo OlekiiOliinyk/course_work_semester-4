@@ -18,8 +18,6 @@ const Quiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
 
 
-
-
     const [questions, setQuestions] = useState([]);
   
     useEffect(() => {
@@ -54,11 +52,29 @@ const Quiz = () => {
         }
     }
 
-    const restartGame = () => {
-        setScore(0);
-        setCurrentQuestion(0);
-        setFinalResults(false);
-    }
+    const quizScoreUpdate = () => {
+        const token = window.localStorage.getItem("token");
+    
+        fetch("http://localhost:2000/updateQuizScore", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            token: token,
+            id: id,
+            lastScore: (score/questions.length )* 100,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
 
     return ( 
 
@@ -74,11 +90,11 @@ const Quiz = () => {
                 <div className="final-results">
                     <h1>Результат</h1>
 
-                    <h2>{score} {score < 5 ? "бали" : "балів"} з {questions.length} правильні </h2>
+                    <h2>{score} {score < 5 ? "відповіді" : "відповідей"} з {questions.length} правильні </h2>
 
                     <h2>{(score/questions.length )* 100} %</h2>
 
-                    <Link to='/quizTopics'><button>Повернутися до тестів</button></Link>
+                    <Link to='/quizTopics'><button onClick={() => quizScoreUpdate()}>Повернутися до тестів</button></Link>
                     
             
                 </div>

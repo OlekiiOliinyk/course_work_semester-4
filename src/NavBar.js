@@ -14,34 +14,14 @@ export default class NavBar extends Component {
     }
 
 
-    componentDidMount(){
-        fetch("http://localhost:2000/userData", {
-      method: "POST",
-      crossDomain:true,
-      headers:{
-        "Content-Type":"application/json",
-        Accept:"application/json",
-        "Access-Control-Allow-Origin":"*",
-      },
-      body:JSON.stringify({
-        token:  window.localStorage.getItem("token"),
-      })
-
-    }).then((res) => res.json())
-    .then((data) => {
-      console.log(data, "userData");
-      this.setState({userData: data.data});
-    });
-    }
-
-
     logOut= () => {
         window.localStorage.clear();
         window.location.href = "./sign-in";
     }
 
     componentDidMount(){
-        fetch("http://localhost:2000/userData", {
+
+      fetch("http://localhost:2000/userData", {
       method: "POST",
       crossDomain:true,
       headers:{
@@ -58,6 +38,7 @@ export default class NavBar extends Component {
       console.log(data, "userData");
       this.setState({userData: data.data});
     });
+    
     }
 
 

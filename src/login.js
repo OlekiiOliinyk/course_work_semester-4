@@ -8,6 +8,7 @@ export default class Login extends Component {
     this.state={
       email:"",
       password:"",
+      errorMessage: '', 
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -38,11 +39,17 @@ export default class Login extends Component {
         window.localStorage.setItem("loggedIn", true);
         window.location.href = "./eventTopics";
       }
+      else{
+        this.setState({ errorMessage: 'Неправильний пароль чи пошта' });
+      }
 
     });
   }
   
   render() {
+
+    const { errorMessage } = this.state;
+
     return (
         <div className="login-wrapper">
           <div className="login-inner">
@@ -74,6 +81,10 @@ export default class Login extends Component {
                   Підтвердити
                 </button>
               </div>
+
+              {errorMessage && <h3>{errorMessage}</h3>}
+
+
               <p className="forgot-password text-right">
                 Немає <a className='a-help' href="/sign-up">аккаунту?</a>
               </p>

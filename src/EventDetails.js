@@ -36,7 +36,30 @@ const EventDetails = () => {
     
       return <div>{lines}</div>;
     }
-    
+
+  const eventReadUpdate = () => {
+    const token = window.localStorage.getItem("token");
+
+    fetch("http://localhost:2000/updateEventRead", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        token: token,
+        id: id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
 
     return (  
         <div className="event-details-preview">
@@ -47,6 +70,8 @@ const EventDetails = () => {
             <p className='photo_desc'>{event.photo_description}</p>
 
             <p className='event_info'>{TextComponent(event.description)}</p>
+
+            <button onClick={() => eventReadUpdate()}>Прочитано</button>
 
         </div>
     );

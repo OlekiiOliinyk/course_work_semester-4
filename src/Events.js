@@ -10,11 +10,39 @@ const Events = () => {
   const [events, setEvents] = useState([]);
 
   const [query, setQuery] = useState("");
+  const [readEvents, setReadEvents] = useState([]);
   const filteredItems = getFilteredItems(query, events);
   
   useEffect(() => {
     fetchEvents();
+    fetchAllReadEvents();
+   
   }, []);
+
+  const fetchAllReadEvents = async () => {
+    try {
+      const token = window.localStorage.getItem("token");
+  
+      const response = await fetch("http://localhost:2000/getAllReadEvents", {
+        method: "POST",
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        const readEvents = data.events.map((event) => event.eventId);
+        setReadEvents(readEvents);
+        console.log(readEvents);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const fetchEvents = async () => {
     try {
@@ -50,6 +78,8 @@ const Events = () => {
             <h2>{event.title}</h2>
             
             <h4>Період: {event.year} роки</h4>
+            {readEvents.includes(event.id) && <h2>Прочитано</h2>}
+            
           </div>
         </Link>
       ))}
