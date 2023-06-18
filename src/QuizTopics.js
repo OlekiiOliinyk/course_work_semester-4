@@ -12,7 +12,7 @@ const QuizTopics = () => {
 
   const fetchQuizzes = async () => {
     try {
-      const response = await fetch('http://localhost:2000/getQuizDetails');
+      const response = await fetch('http://localhost:2000/quiz/getQuizDetails');
       const data = await response.json();
       const sortedData = data.sort((a, b) => {
         const startYearA = parseInt(a.period.split('-')[0]);
@@ -29,7 +29,7 @@ const QuizTopics = () => {
     try {
       const token = window.localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:2000/getAllQuizzesScores", {
+      const response = await fetch("http://localhost:2000/quiz/getAllQuizzesScores", {
         method: "POST",
         headers: {
           Authorization: token,

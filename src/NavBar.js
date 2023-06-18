@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { Component } from 'react'
-import "./styles/navbar.css"
+import "./styles/Navbar.css"
 
 export default class NavBar extends Component {
 
@@ -21,7 +21,7 @@ export default class NavBar extends Component {
 
     componentDidMount(){
 
-      fetch("http://localhost:2000/userData", {
+      fetch("http://localhost:2000/auth/userData", {
       method: "POST",
       crossDomain:true,
       headers:{

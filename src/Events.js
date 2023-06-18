@@ -23,7 +23,7 @@ const Events = () => {
     try {
       const token = window.localStorage.getItem("token");
   
-      const response = await fetch("http://localhost:2000/getAllReadEvents", {
+      const response = await fetch("http://localhost:2000/event/getAllReadEvents", {
         method: "POST",
         headers: {
           Authorization: token,
@@ -46,7 +46,7 @@ const Events = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch('http://localhost:2000/getEventDetails');
+      const response = await fetch('http://localhost:2000/event/getEventDetails');
       const data = await response.json();
       const sortedData = data.sort((a, b) => {
         const startYearA = parseInt(a.year.split('-')[0]);
@@ -78,7 +78,8 @@ const Events = () => {
             <h2>{event.title}</h2>
             
             <h4>Період: {event.year} роки</h4>
-            {readEvents.includes(event.id) && <h2>Прочитано</h2>}
+            {readEvents.includes(event.id) && <h2 className="read-status">Прочитано</h2>}
+
             
           </div>
         </Link>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './styles/signup.css'
+import './styles/Signup.css'
 
 export default class SignUp extends Component {
   
@@ -10,6 +10,7 @@ export default class SignUp extends Component {
       lastName: "",
       email: "",
       password:"",
+      errorMessage: '', 
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,12 +24,12 @@ export default class SignUp extends Component {
   
     // Check if any of the fields are empty
     if (!firstName || !lastName || !email || !password) {
-      console.log('Please fill in all fields');
+      this.setState({ errorMessage: 'Заповніть всі поля' });
       return;
     }
 
     console.log({firstName, lastName, email, password});
-    fetch("http://localhost:2000/register", {
+    fetch("http://localhost:2000/auth/register", {
       method: "POST",
       crossDomain:true,
       headers:{
@@ -42,11 +43,23 @@ export default class SignUp extends Component {
 
     }).then((res) => res.json())
     .then((data) => {
+
+      if(data.error === "User Exists"){
+        this.setState({ errorMessage: 'Ця пошта вже зайнята' });
+      }
+
+      else if (data.status === "ok"){
+        window.location.href = "./sign-in";
+      }
+      
       console.log(data, "userRegister");
+
     });
   }
 
   render() {
+
+    const { errorMessage } = this.state;
     return (
         <div className="auth-wrapper">
           <div className="auth-inner">
@@ -100,6 +113,9 @@ export default class SignUp extends Component {
                 Зареєструватися
               </button>
             </div>
+
+            {errorMessage && <h3 className='errorMessage'>{errorMessage}</h3>}
+
             <p className="forgot-password text-right">
               Вже <a className='a-help' href="/sign-in">зареєстровані?</a>
             </p>

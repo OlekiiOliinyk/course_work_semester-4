@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import "./styles/login.css"
+import "./styles/Login.css"
 
 export default class Login extends Component {
   
@@ -18,7 +18,7 @@ export default class Login extends Component {
     const { email, password}= this.state;
     console.log({ email, password});
   
-    fetch("http://localhost:2000/login-user", {
+    fetch("http://localhost:2000/auth/login-user", {
       method: "POST",
       crossDomain:true,
       headers:{
@@ -40,7 +40,7 @@ export default class Login extends Component {
         window.location.href = "./eventTopics";
       }
       else{
-        this.setState({ errorMessage: 'Неправильний пароль чи пошта' });
+        this.setState({ errorMessage: 'Неправильний пароль або пошта' });
       }
 
     });

@@ -6,8 +6,8 @@ import Events from './Events';
 import QuizTopics from './QuizTopics';
 import EventDetails from './EventDetails';
 import Quiz from './Quiz';
-import Login from './login';
-import SignUp from './signup';
+import Login from './Login';
+import SignUp from './Signup';
 import Footer from './Footer';
 
 

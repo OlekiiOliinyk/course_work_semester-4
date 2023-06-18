@@ -9,7 +9,7 @@ const EventDetails = () => {
   
     const fetchEvent = async () => {
       try {
-        const response = await fetch(`http://localhost:2000/getEventDetails/${id}`);
+        const response = await fetch(`http://localhost:2000/event/getEventDetails/${id}`);
         const data = await response.json();
         setEvent(data);
       } catch (error) {
@@ -40,7 +40,7 @@ const EventDetails = () => {
   const eventReadUpdate = () => {
     const token = window.localStorage.getItem("token");
 
-    fetch("http://localhost:2000/updateEventRead", {
+    fetch("http://localhost:2000/event/updateEventRead", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,6 +54,7 @@ const EventDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        
       })
       .catch((error) => {
         console.log(error);

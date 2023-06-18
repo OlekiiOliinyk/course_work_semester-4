@@ -11,4 +11,4 @@ const EventReadSchema = new mongoose.Schema(
     }
 );
 
-mongoose.model("readEvents", EventReadSchema);
+module.exports = mongoose.model('EventRead', EventReadSchema);

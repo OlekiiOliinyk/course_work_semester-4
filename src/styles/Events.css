@@ -1,9 +1,15 @@
+.read-status {
+    margin-bottom: 10px;
+}
+
+
 .event-preview {
     text-align: left;
     padding: 10px 16px;
     margin: 20px 0;
     border-bottom: 1px solid #fafafa;
     border-radius: 20px;
+
 }
 .event-preview:hover {
     box-shadow: 3px 6px 15px rgba(0,0,0,0.3);
@@ -13,4 +19,4 @@
     color: #f1356d;
     margin-bottom: 8px;
 }
-
+  

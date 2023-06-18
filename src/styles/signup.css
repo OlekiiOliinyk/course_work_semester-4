@@ -43,6 +43,10 @@
     padding: 10px 15px;
     width: 50%;
 }
+
+.errorMessage{
+    margin-top: 10px;
+}
   
 .auth-inner .forgot-password {
     margin-top: 10px;

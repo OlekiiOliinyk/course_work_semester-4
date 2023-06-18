@@ -26,7 +26,7 @@ const Quiz = () => {
   
     const fetchQuestions = async () => {
       try {
-        const response = await fetch(`http://localhost:2000/getQuizDetails/${id}`);
+        const response = await fetch(`http://localhost:2000/quiz/getQuizDetails/${id}`);
         const data = await response.json();
         setQuestions(data.questions);
       } catch (error) {
@@ -55,7 +55,7 @@ const Quiz = () => {
     const quizScoreUpdate = () => {
         const token = window.localStorage.getItem("token");
     
-        fetch("http://localhost:2000/updateQuizScore", {
+        fetch("http://localhost:2000/quiz/updateQuizScore", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
